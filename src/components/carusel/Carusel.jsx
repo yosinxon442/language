@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import "./Carusel.css";
 import { useStateValue } from "../context";
 import { useTranslation } from "react-i18next";
+import { Dropdown } from "react-bootstrap";
 
 function CustomCarousel({ search }) {
-    const totalCarouselItems = 15;
-    const itemsPerPage = 5;
+    const totalCarouselItems = 12; // 4 ta elementli qilish uchun 12 ta element
+    const itemsPerPage = 4; // Har bir sahifada 4 ta element
     const [index, setIndex] = useState(0);
     const [carouselProducts, setCarouselProducts] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
@@ -27,9 +28,16 @@ function CustomCarousel({ search }) {
             });
     }, []);
 
+    // Avtomatik aylanish uchun useEffect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndex((prevIndex) => (prevIndex + 1) % (totalCarouselItems - itemsPerPage + 1));
+        }, 3000); // Har 3 soniyada aylanish
 
-    const {t,i18n} = useTranslation();
+        return () => clearInterval(interval);
+    }, [index, totalCarouselItems, itemsPerPage]);
 
+    const { t, i18n } = useTranslation();
 
     const filteredProducts = sortedProducts.filter((product) =>
         product.title.toLowerCase().includes(search.toLowerCase())
@@ -112,35 +120,27 @@ function CustomCarousel({ search }) {
 
     return (
         <div>
-            <div className="sort-buttons">
-                <button className="reginch" onClick={sortByPriceAsc}>{t("price")}</button>
-                <button className="reginch" onClick={sortByPriceDesc}>{t("pricetwo")}</button>
-                <button className="reginch" onClick={sortByRatingAsc}>{t("rating")}</button>
-                <button className="reginch" onClick={sortByRatingDesc}>{t("ratingtwo")}</button>
-            </div>
-
             <div className="carousel-container">
                 <button className="carousel-btn left" onClick={prevSlide} disabled={index === 0}>
                     ❮
                 </button>
 
-                <div className="carousel-wrapper">
-                    {carouselProducts.slice(index, index + itemsPerPage).map((product) => (
+                <div className="carousel-wrapper" style={{ transform: `translateX(-${index * 25}%)` }}>
+                    {carouselProducts.map((product) => (
                         <div key={product.id} className="carousel-box">
-                            <img src={product.thumbnail} alt={product.title} className="carousel-img" />
-                            <h5>{product.title}</h5>
-                            <p> {t("prics")} : ${product.price}</p>
-                            <p> {t("ratings")} : {renderStars(Math.round(product.rating))}</p>
-
                             <button
-                                className="wishlistbtn"
+                                className={`like-btn ${wishlist.some((item) => item.id === product.id) ? "liked" : ""}`}
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     addWishlist(product);
                                 }}
                             >
-                                ❤️ {t("wishlist")}
+                                ❤️
                             </button>
+                            <img src={product.thumbnail} alt={product.title} className="carousel-img" />
+                            <h5>{product.title}</h5>
+                            <p> {t("prics")} : ${product.price}</p>
+                            <p> {t("ratings")} : {renderStars(Math.round(product.rating))}</p>
 
                             <button
                                 className="cartbtn"
@@ -158,6 +158,29 @@ function CustomCarousel({ search }) {
                 <button className="carousel-btn right" onClick={nextSlide} disabled={index >= totalCarouselItems - itemsPerPage}>
                     ❯
                 </button>
+            </div>
+
+            {/* Sortlash tugmalari */}
+            <div className="sort-buttons-container">
+                <Dropdown>
+                    <Dropdown.Toggle variant="primary" id="dropdown-price">
+                        {t("prics")}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={sortByPriceAsc}>{t("price")}</Dropdown.Item>
+                        <Dropdown.Item onClick={sortByPriceDesc}>{t("pricetwo")}</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+
+                <Dropdown>
+                    <Dropdown.Toggle variant="primary" id="dropdown-rating">
+                        {t("ratings")}
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item onClick={sortByRatingAsc}>{t("rating")}</Dropdown.Item>
+                        <Dropdown.Item onClick={sortByRatingDesc}>{t("ratingtwo")}</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
 
             {showModal && selectedProduct && (
@@ -181,20 +204,19 @@ function CustomCarousel({ search }) {
             <div className="products_div">
                 {filteredProducts.map((product) => (
                     <div key={product.id} className="bx_div" onClick={() => openModal(product)}>
-                        <img src={product.thumbnail} alt={product.title} className="product-img" />
-                        <h5>{product.title}</h5>
-                        <p> {t("prics")} : ${product.price}</p>
-                        <p> {t("ratings")} : {renderStars(Math.round(product.rating))}</p>
                         <button
-                            className="wishlistbtn"
+                            className={`like-btn ${wishlist.some((item) => item.id === product.id) ? "liked" : ""}`}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 addWishlist(product);
                             }}
                         >
-                            ❤️ {t("wishlist")}
+                            ❤️
                         </button>
-
+                        <img src={product.thumbnail} alt={product.title} className="product-img" />
+                        <h5>{product.title}</h5>
+                        <p> {t("prics")} : ${product.price}</p>
+                        <p> {t("ratings")} : {renderStars(Math.round(product.rating))}</p>
                         <button
                             className="cartbtn"
                             onClick={(e) => {

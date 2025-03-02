@@ -2,7 +2,7 @@
     "home": "Bosh sahifa",
     "lang": "Tilni tanlash",
     "price": "Narx pasayish",
-    "pricetwo": "Narx pasayish",
+    "pricetwo": "Narx oshish",
     "rating": "Reyting pasayish",
     "ratingtwo": "Reyting oshish",
     "modalbtn": "Qo'shimcha ma'lumot" ,
@@ -19,6 +19,21 @@
     "details": "batafsil",
     "cartop": "Hozircha savatcha bo‘sh! Mahsulot qo‘shing",
     "countity": "Miqdor",
-    " Zakaz": "Zakaz"
+    " Zakaz": "Zakaz",
+    "total_price": "Jami narx",
+    "empty_cart_message": "Siz hali hech qanday buyurtma qilganmang.",
+    "shop_now": "Buyurtma qilish",
+    "about_us": "Biz haqimizda",
+    "quick_links": "Tezkor havolalar",
+    "contact_us": "Biz bilan bog'lanish",
+    "about": "Biz haqimizda",
+    "services": "Xizmatlar",
+    "products": "Mahsulotlar",
+    "contact": "Aloqa",
+    "privacy_policy": "Maxfiylik siyosati",
+    "your_email": "Elektron pochtangiz",
+    "your_message": "Xabaringiz",
+    "send": "Yuborish",
+    "designed_by": "Ishlab chiqaruvchi"
 }
 

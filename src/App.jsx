@@ -8,6 +8,7 @@ import { useState } from "react";
 import Footer from "./components/footer/Footer";
 import Magazen from "./components/magazen/Magazen";
 import Wishlist from "./components/wishlist/Wishlist";
+import Zakaz from "./components/zakaz/Zakaz";
 import "./components/utils/i18n";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/wishlist" element={<Wishlist />} />
                     <Route path="/magazen" element={<Magazen />} />
                     <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/zakaz" element={<Zakaz />} />
                 </Routes>
                 <Footer />
             </header>

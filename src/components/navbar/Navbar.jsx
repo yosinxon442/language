@@ -11,7 +11,7 @@ function CustomNavbar({ setSearch }) {
         setSearch(e.target.value.toLowerCase());
     }, [setSearch]);
 
-    const {t,i18n} = useTranslation();
+    const { t, i18n } = useTranslation();
 
     const loggin = () => {
         i18n.changeLanguage(i18n.language === "uz" ? "ru" : "uz");
@@ -46,6 +46,9 @@ function CustomNavbar({ setSearch }) {
                 <Link to="/magazen">
                     🛒 <p>{cart.length}</p>
                 </Link>
+            </div>
+            <div className="alpest">
+                <Link to="/zakaz"><span className="zakazspan">🛒zakaz</span></Link>
             </div>
             
             <div>

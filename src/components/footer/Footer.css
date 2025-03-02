@@ -1,33 +1,103 @@
 .footer {
-    background: #a2a0fd11;
-    color: #000000;
-    text-align: center;
-    padding: 15px 0;
-    position: relative;
-    width: 100%;
-  }
-  
-  .footer-content {
-    max-width: 1200px;
-    margin: auto;
-  }
-  
-  .footer-links {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .footer-links li {
-    display: inline;
-    margin: 0 10px;
-  }
-  
-  .footer-links a {
-    color: #ffcc00;
-    text-decoration: none;
-  }
-  
-  .footer-links a:hover {
-    text-decoration: underline;
-  }
-  
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 40px 0 0 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 20px;
+  min-width: 250px;
+}
+
+.footer-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #f1c40f;
+}
+
+.footer-section.about p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-section.about .contact span {
+  display: block;
+  margin: 10px 0;
+  font-size: 0.9rem;
+}
+
+.footer-section.about .socials a {
+  color: #ecf0f1;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  transition: color 0.3s ease;
+}
+
+.footer-section.about .socials a:hover {
+  color: #f1c40f;
+}
+
+.footer-section.links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section.links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section.links ul li a {
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section.links ul li a:hover {
+  color: #f1c40f;
+}
+
+.footer-section.contact-form .text-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.footer-section.contact-form .contact-input {
+  background-color: #34495e;
+  color: #ecf0f1;
+}
+
+.footer-section.contact-form .btn {
+  background-color: #f1c40f;
+  color: #2c3e50;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.footer-section.contact-form .btn:hover {
+  background-color: #e67e22;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #34495e;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
